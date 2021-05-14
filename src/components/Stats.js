@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Stats = (props) => {
+const Stats = ({ players }) => {
 
-    const totalPlayers = props.players.length;
-    const totalScore = props.players.reduce( (total, player) => {
+    const totalPlayers = players.length;
+    const totalScore = players.reduce( (total, player) => {
         return total + player.score;
     }, 0 )
 
@@ -21,6 +22,13 @@ const Stats = (props) => {
             </tbody>
         </table>
     )
+}
+
+Stats.propTypes = {
+    players: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string,
+        score: PropTypes.number
+    }))
 }
 
 export default Stats;

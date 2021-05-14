@@ -1,16 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Counter = (props) => {
+const Counter = ({ index, score, scoreChange }) => {
     
-    const index = props.index;
-
     return (
       <div className="counter">
-        <button className="counter-action decrement" onClick={() => {props.scoreChange(index, -1)}}> - </button>
-        <span className="counter-score">{ props.score }</span>
-        <button className="counter-action increment" onClick={() => {props.scoreChange(index, 1)}}> + </button>
+        <button className="counter-action decrement" onClick={() => {scoreChange(index, -1)}}> - </button>
+        <span className="counter-score">{ score }</span>
+        <button className="counter-action increment" onClick={() => {scoreChange(index, 1)}}> + </button>
       </div>
     );
+}
+
+Counter.propTypes = {
+  index: PropTypes.number,
+  score: PropTypes.number,
+  scoreChange: PropTypes.func 
 }
 
 export default Counter;

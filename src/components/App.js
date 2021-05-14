@@ -41,7 +41,11 @@ class App extends Component {
         players: newPlayers
       };
     });
-    
+  }
+
+  getHighScore = () => {
+    const highScore = Math.max(...this.state.players.map(player => parseInt(player.score, 10)));
+    return highScore;
   }
 
   handleRemovePlayer = (id) => {
@@ -84,6 +88,8 @@ class App extends Component {
             id={player.id}
             index={index}
             key={player.id.toString()} 
+            isHighScore={player.score === this.getHighScore() &&
+              player.score !== 0}
             removePlayer={this.handleRemovePlayer} 
             scoreChange={this.handleScoreChange}  
           />
